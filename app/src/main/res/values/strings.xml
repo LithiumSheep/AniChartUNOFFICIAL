@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">AniChartUNOFFICIAL</string>
+
+    <string name="home">Home</string>
+    <string name="season_winter">Winter</string>
+    <string name="season_spring">Spring</string>
+    <string name="season_summer">Summer</string>
+    <string name="season_fall">Fall</string>
+    <string name="season_airing">Airing</string>
+    <string name="tba">TBA</string>
+    <string name="archive">Archive</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Preference strings -->
+    <string name="pref_nightmode_title">Night mode</string>
+    <string name="pref_filter_title">Filter by</string>
+    <string name="pref_filter_dialog">Filter by</string>
+    <string name="pref_filter_default">Card</string>
+    <string-array name="pref_filter_entries">
+        <item>Card</item>
+        <item>List</item>
+        <item>Grid</item>
+    </string-array>
+    <string-array name="pref_filter_values">
+        <item>Card</item>
+        <item>List</item>
+        <item>Grid</item>
+    </string-array>
+
+
+</resources>
