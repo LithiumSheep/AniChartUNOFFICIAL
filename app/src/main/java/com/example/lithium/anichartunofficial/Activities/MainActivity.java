@@ -39,15 +39,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);;
+
 
         mFragMan = getSupportFragmentManager();
         getFragment(new AiringFragment());
 
-        setupDrawer();
         initialTasks();
         LoggerUtil.debug(LOG, "Finished loading MainActivity");
+    }
+
+    private void initialTasks() {
+        //setupDrawer();
     }
 
     private void setupDrawer() {
@@ -116,13 +118,9 @@ public class MainActivity extends AppCompatActivity {
                 .build();
     }
 
-    private void initialTasks() {
-
-    }
-
     private void getFragment(Fragment fragment) {
         FragmentTransaction transaction = mFragMan.beginTransaction();
-        transaction.replace(R.id.frame_container, fragment);
+        transaction.replace(R.id.content_frame, fragment);
         //transaction.addToBackStack(null);
         transaction.commit();
     }

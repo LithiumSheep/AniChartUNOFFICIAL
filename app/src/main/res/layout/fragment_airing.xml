@@ -1,9 +1,16 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator"
     android:layout_height="match_parent"
-    tools:context="com.example.lithium.anichartunofficial.Fragments.AiringFragment">
+    android:layout_width="match_parent">
 
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:scrollbars="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-</FrameLayout>
+</android.support.design.widget.CoordinatorLayout>
