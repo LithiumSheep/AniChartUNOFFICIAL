@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.lithium.anichartunofficial.Models.AnimeModel;
+import com.example.lithium.anichartunofficial.Models.POJOs.AnimeModel;
 import com.example.lithium.anichartunofficial.R;
 import com.squareup.picasso.Picasso;
 
@@ -34,15 +34,18 @@ public class AnimeModelAdapter extends RecyclerView.Adapter<AnimeModelAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Picasso.with(mContext)
-                .load(R.drawable.icon)
-                .into(holder.thumbnail);
-        holder.title.setText(models.get(position).getTitle_romanji());
-        holder.source.setText(models.get(position).getType());
-        holder.eps.setText(Integer.toString(models.get(position).getTotal_episodes()));
+        AnimeModel row = models.get(position);
 
-        holder.description.setText("placeholder description");
-        holder.genres.setText("placeholder genres");
+        Picasso.with(mContext)
+                .load(row.getImageUrlLge())
+                .into(holder.thumbnail);
+        holder.title.setText(row.getTitleEnglish());
+
+        /*int nextEp = row.getAiring().getNextEpisode();
+        String tickerTime = row.getAiring().getTime();
+        holder.ticker.setText(tickerTime);*/
+
+
     }
 
     @Override
@@ -59,6 +62,9 @@ public class AnimeModelAdapter extends RecyclerView.Adapter<AnimeModelAdapter.Vi
         CardView cv;
         ImageView thumbnail;
         TextView title;
+        TextView studio;
+        TextView ticker;
+
         TextView source;
         TextView eps;
         TextView description;
@@ -68,7 +74,10 @@ public class AnimeModelAdapter extends RecyclerView.Adapter<AnimeModelAdapter.Vi
             super(itemView);
             cv = (CardView) itemView.findViewById(R.id.card_view);
             thumbnail = (ImageView) itemView.findViewById(R.id.card_thumbnail_image);
-            title = (TextView) itemView.findViewById(R.id.card_airing_datetime);
+            title = (TextView) itemView.findViewById(R.id.card_title);
+            studio = (TextView) itemView.findViewById(R.id.card_studio_name);
+            ticker = (TextView) itemView.findViewById(R.id.card_airing_datetime);
+
             source = (TextView) itemView.findViewById(R.id.card_airing_source);
             eps = (TextView) itemView.findViewById(R.id.card_airing_eps);
             description = (TextView) itemView.findViewById(R.id.card_airing_description);

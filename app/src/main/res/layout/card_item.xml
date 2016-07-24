@@ -15,25 +15,57 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/card_thumbnail_image"
+        <RelativeLayout
             android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"/>
+            android:layout_height="match_parent">
 
-        <View
-            android:layout_height="match_parent"
-            android:layout_width="1dp"
-            android:background="@android:color/darker_gray"/>
+            <ImageView
+                android:id="@+id/card_thumbnail_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/text_gradient">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/card_studio_name"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:layout_alignParentBottom="true"
+                    android:text="Studio title here"
+                    android:ellipsize="end"
+                    android:maxLines="2"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/card_title"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:layout_above="@id/card_studio_name"
+                    android:text="Main title goes here"
+                    android:ellipsize="end"
+                    android:maxLines="2"/>
+            </RelativeLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/card_thumbnail_content"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -54,6 +86,7 @@
                 android:id="@+id/card_airing_source_and_eps"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
+                android:background="@color/card_background"
                 android:orientation="horizontal">
 
                 <TextView
@@ -86,19 +119,16 @@
             <TextView
                 android:id="@+id/card_airing_description"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="150dp"
                 android:text="lorem ipsum"/>
 
-            <View
-                android:layout_height="1dp"
-                android:layout_width="match_parent"
-                android:background="@android:color/darker_gray"/>
 
             <TextView
                 android:id="@+id/card_airing_genres"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="30dp"
                 android:gravity="center"
+                android:background="@color/card_background"
                 android:text="genres go here"/>
         </LinearLayout>
     </LinearLayout>

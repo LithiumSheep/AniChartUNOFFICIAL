@@ -16,6 +16,7 @@ import com.example.lithium.anichartunofficial.Fragments.SeasonFragment;
 import com.example.lithium.anichartunofficial.Fragments.SettingsFragment;
 import com.example.lithium.anichartunofficial.R;
 import com.example.lithium.anichartunofficial.Utils.LoggerUtil;
+import com.example.lithium.anichartunofficial.Utils.PermissionsUtil;
 import com.example.lithium.anichartunofficial.Utils.SeasonYearUtil;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -39,21 +40,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         mFragMan = getSupportFragmentManager();
         getFragment(new AiringFragment());
 
+        mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        mToolbar.setTitle("AniChart UNOFFICIAL");
+        setSupportActionBar(mToolbar);
+
         initialTasks();
-        LoggerUtil.debug(LOG, "Finished loading MainActivity");
     }
 
     private void initialTasks() {
-        //setupDrawer();
+        PermissionsUtil.checkPermissionsRequestGrant(mContext);
+        setupDrawer();
     }
 
     private void setupDrawer() {
-        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(R.string.season_airing);
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withName(getResources().getString(R.string.season_airing)
+                + " - "  + SeasonYearUtil.getCurrentSeason() + " " + SeasonYearUtil.getCurrentYear());
         PrimaryDrawerItem item2 = new PrimaryDrawerItem().withName(R.string.season_winter);
         PrimaryDrawerItem item3 = new PrimaryDrawerItem().withName(R.string.season_spring);
         PrimaryDrawerItem item4 = new PrimaryDrawerItem().withName(R.string.season_summer);
@@ -84,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         mDrawer.closeDrawer();
                         switch (position) {
                             case 1:
-                                mToolbar.setTitle("AniChart");
+                                mToolbar.setTitle("AniChart UNOFFICIAL");
                                 getFragment(new AiringFragment());
                                 break;
                             case 3:
