@@ -20,6 +20,8 @@ import com.example.lithium.anichartunofficial.Utils.AuthTokenUtil;
 import com.example.lithium.anichartunofficial.Utils.LoggerUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -60,12 +62,24 @@ public class AiringFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         recycler.setLayoutManager(llm);
 
-        mAnimeModels = new ArrayList<AnimeModel>();
+        mAnimeModels = new ArrayList<>();
         mAdapter = new AnimeModelAdapter(mContext, mAnimeModels);
         recycler.setAdapter(mAdapter);//SHOULD BE AN EMPTY ADAPTER
     }
 
     private void setupAdapter() {
+        /**
+         * sort list here? currently alphabetical order
+         */
+        Collections.sort(ApplicationModel.instance().mAnimeModels, new Comparator<AnimeModel>()
+        {
+            @Override
+            public int compare(AnimeModel modelA, AnimeModel modelB)
+            {
+                return modelA.getTitleEnglish().compareToIgnoreCase(modelB.getTitleEnglish());
+            }
+        });
+
         mAdapter = new AnimeModelAdapter(mContext, ApplicationModel.instance().mAnimeModels);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
@@ -77,6 +91,7 @@ public class AiringFragment extends Fragment {
             return;
         }
         if (AuthTokenUtil.isTokenValid()) {
+            LoggerUtil.debug(LOG, "token is still valid, go straight to fetchAiring");
             fetchAiring();
         } else {
             AuthTokenUtil.getToken(new Callback<TokenModel>() {
@@ -104,9 +119,7 @@ public class AiringFragment extends Fragment {
                     LoggerUtil.debug(LOG, "Airing GET success");
                     ApplicationModel.instance().mAnimeModels = response.body();
                     ApplicationModel.instance().isPopulated = true;
-                    /**
-                     * Set Adapters
-                     */
+
                     setupAdapter();
                 } else {
                     LoggerUtil.debug(LOG, "GET browse/anime responded, but not with 200");

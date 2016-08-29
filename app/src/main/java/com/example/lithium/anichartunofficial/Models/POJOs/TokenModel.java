@@ -13,7 +13,7 @@ public class TokenModel {
     private String tokenType;
     @SerializedName("expires")
     @Expose
-    private Integer expires;
+    private long expires;
     @SerializedName("expires_in")
     @Expose
     private Integer expiresIn;
@@ -59,7 +59,7 @@ public class TokenModel {
      * @return
      * The expires
      */
-    public Integer getExpires() {
+    public long getExpires() {
         return expires;
     }
 
@@ -68,7 +68,7 @@ public class TokenModel {
      * @param expires
      * The expires
      */
-    public void setExpires(Integer expires) {
+    public void setExpires(long expires) {
         this.expires = expires;
     }
 

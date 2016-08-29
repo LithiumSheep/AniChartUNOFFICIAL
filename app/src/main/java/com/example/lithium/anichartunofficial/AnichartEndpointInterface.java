@@ -1,5 +1,6 @@
 package com.example.lithium.anichartunofficial;
 
+import com.example.lithium.anichartunofficial.Models.POJOs.AnimeDetailModel;
 import com.example.lithium.anichartunofficial.Models.POJOs.AnimeModel;
 import com.example.lithium.anichartunofficial.Models.POJOs.TokenModel;
 
@@ -8,6 +9,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface AnichartEndpointInterface {
@@ -21,10 +23,16 @@ public interface AnichartEndpointInterface {
 
     @GET("browse/anime")
     Call<List<AnimeModel>> getAiring(
-            @Query("access_token") String auth_token,
+            @Query("access_token") String access_token,
             @Query("status") String status,
             @Query("type") String type,
             @Query("airing_data") boolean airing_data,
             @Query("full_page") boolean full_page
+    );
+
+    @GET("anime/{id}")
+    Call<AnimeDetailModel> getDetail(
+            @Path("id") int id,
+            @Query("access_token") String access_token
     );
 }

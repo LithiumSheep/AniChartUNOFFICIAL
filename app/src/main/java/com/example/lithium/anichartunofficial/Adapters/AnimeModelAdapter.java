@@ -1,6 +1,8 @@
 package com.example.lithium.anichartunofficial.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.lithium.anichartunofficial.Activities.AnimeDetailActivity;
 import com.example.lithium.anichartunofficial.Models.POJOs.AnimeModel;
 import com.example.lithium.anichartunofficial.R;
 import com.squareup.picasso.Picasso;
@@ -34,7 +37,7 @@ public class AnimeModelAdapter extends RecyclerView.Adapter<AnimeModelAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        AnimeModel row = models.get(position);
+        final AnimeModel row = models.get(position);
 
         Picasso.with(mContext)
                 .load(row.getImageUrlLge())
@@ -45,7 +48,15 @@ public class AnimeModelAdapter extends RecyclerView.Adapter<AnimeModelAdapter.Vi
         String tickerTime = row.getAiring().getTime();
         holder.ticker.setText(tickerTime);*/
 
-
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, AnimeDetailActivity.class);
+                intent.putExtra("animeId", row.getId());
+                ((AppCompatActivity) mContext).overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

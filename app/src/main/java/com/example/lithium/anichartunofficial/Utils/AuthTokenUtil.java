@@ -11,9 +11,13 @@ import retrofit2.Callback;
 public class AuthTokenUtil {
     public static final String LOG = AuthTokenUtil.class.getSimpleName();
 
+    /**
+     * Not working as intended!  expires value is not similar to System.currentTimeMillis()
+     * @return
+     */
     public static boolean isTokenValid() {
         if (ApplicationModel.instance().hasToken()) {
-            LoggerUtil.debug(LOG, "token value is " + ApplicationModel.instance().mToken.getExpires());
+            LoggerUtil.debug(LOG, "token expire is " + ApplicationModel.instance().mToken.getExpires());
             long time = System.currentTimeMillis();
             LoggerUtil.debug(LOG, "current time is " + time);
 
