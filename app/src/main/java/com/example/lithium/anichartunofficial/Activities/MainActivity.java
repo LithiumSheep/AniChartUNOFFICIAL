@@ -143,6 +143,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+
+        // The activity is either being restarted or started for the first time
+        // so this is where we should make sure that GPS is enabled
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        // Release the Camera because we don't need it when paused
+        // and other activities might need to use it.
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        // Save the note's current draft, because the activity is stopping
+        // and we want to be sure the current note progress isn't lost.
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
     public void onBackPressed() {
         if (mDrawer != null && mDrawer.isDrawerOpen()) {
             mDrawer.closeDrawer();
