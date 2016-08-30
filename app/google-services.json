@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "964586088311",
+    "firebase_url": "https://anichartunofficial.firebaseio.com",
+    "project_id": "anichartunofficial",
+    "storage_bucket": "anichartunofficial.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964586088311:android:6b4f57584e6dea80",
+        "android_client_info": {
+          "package_name": "com.example.lithium.anichartunofficial"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964586088311-hefnijgfjl2ca6thq60bvhgd366o9v8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbbtydloXLnHjRDuX2EJ7stleZuWKNgI8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
