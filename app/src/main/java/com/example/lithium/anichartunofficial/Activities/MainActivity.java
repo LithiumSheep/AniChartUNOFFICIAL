@@ -18,6 +18,7 @@ import com.example.lithium.anichartunofficial.R;
 import com.example.lithium.anichartunofficial.Utils.LoggerUtil;
 import com.example.lithium.anichartunofficial.Utils.PermissionsUtil;
 import com.example.lithium.anichartunofficial.Utils.SeasonYearUtil;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -30,6 +31,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 public class MainActivity extends AppCompatActivity {
     private static final String LOG = MainActivity.class.getSimpleName();
 
+    private FirebaseAnalytics mFirebaseAnalytics;
     private Context mContext = this;
     private Drawer mDrawer = null;
     private Toolbar mToolbar;
@@ -40,19 +42,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mFragMan = getSupportFragmentManager();
-        getFragment(new AiringFragment());
-
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("AniChart UNOFFICIAL");
         setSupportActionBar(mToolbar);
 
+        mFragMan = getSupportFragmentManager();
+        getFragment(new AiringFragment());
+
         initialTasks();
+        logFirebaseEvents();
     }
 
     private void initialTasks() {
         PermissionsUtil.checkPermissionsRequestGrant(mContext);
         setupDrawer();
+    }
+
+    private void logFirebaseEvents() {
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        // log app_open event for the current season & year
+        Bundle bundle = new Bundle();
+        String seasonYear = SeasonYearUtil.getCurrentYear() + SeasonYearUtil.getCurrentSeason();
+        bundle.putString("app_open_for_season_year", seasonYear);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.APP_OPEN, bundle);
     }
 
     private void setupDrawer() {
