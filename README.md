@@ -3,3 +3,5 @@
 Reimplementation of http://anichart.net/
 
 API: https://anilist-api.readthedocs.io/en/latest/
+
+Project is on hold while AniList API updates to v2.  https://github.com/joshstar/AniList-API-Docs
